@@ -1,13 +1,9 @@
-::: {#header}
-CP630 Project Proposal: Temperature Prediction using a Linear Regression Model
-==============================================================================
+# CP630 Project Proposal: Temperature Prediction using a Linear Regression Model
 
 Author: Johnny Console (215803250)
 
 24 October 2023
-:::
 
-::: {.section}
 ### Introduction
 
 Temperatures vary year-to-year, month-to-month, and even day-by-day, but
@@ -27,9 +23,7 @@ Ideally, the project would also include the ability to predict daily
 temperatures for any city across Canada, but the dataset for these would
 be unmanageable to download for the scope of this project, so the city
 of Ottawa was chosen.
-:::
 
-::: {.section}
 ### Problem Solving and Algorithms
 
 #### Dataset {#dataset style="margin-left: 30px;"}
@@ -44,23 +38,21 @@ weather station in Canada. The chosen station is **OTTAWA INTL A**
 
 Because the source gives the data in seperate CSV files, the data files
 from 2013-2023 were downloaded and combined into the included
-[TemperatureData-2013-2023-Combined.csv](files/TemperatureData-2013-2023-Combined.csv)
+[TemperatureData-2013-2023-Combined.csv](Proposal/files/TemperatureData-2013-2023-Combined.csv)
 file, which was converted to ARFF format using Weka\'s GUI Interface.
 The converted ARFF file can be found
-[here](files/TemperatureData-2013-2023-Combined.arff). Individual
+[here](Proposal/files/TemperatureData-2013-2023-Combined.arff). Individual
 historical data files can be accessed through the list in the References
 section. Extra data (Latitude, Longitude, and extra climate
 information), as well as rows with missing data, are removed from the
 combined dataset using Microsoft Excel prior to converting to ARFF
 format.
 
-#### Algorithm {#algorithm style="margin-left: 30px" ;=""}
+#### Algorithm
 
 The algorithm used to predict the temperature for the given day will be
 Weka\'s Linear Regression algorithm.
-:::
 
-::: {.section}
 ### System Design
 
 The system will have the following components covered in this course:
@@ -93,25 +85,21 @@ the project implementation:
 -   Stateless Session Beans
 -   Entity Beans (for the user and the model)
 -   Weka (for Linear Regression model)
-:::
 
-::: {.section}
 ### Plan and Schedule
 
-  Task Item                                                 Status     Due/Completion Date
-  --------------------------------------------------------- ---------- --------------------------------
-  Compile Datasets from ECCC                                Complete   25 October 2023
-  Convert Compiled Dataset to Required Format               Complete   26 October 2023
-  Complete and Submit Project Proposal Document             Complete   26 October 2023
-  Program EAR, EJB and JavaFX Client components             To-Do      12 December 2023
-  Program Web Client, SOAP API and RESTful API Components   To-Do      12 December 2023
-  Test Components                                           To-Do      Ongoing, Due: 12 December 2023
-  Documentation of Project                                  To-Do      Ongoing, Due: 12 December 2023
-  Create Project Demonstration Video                        To-Do      12 December 2023
-  Submit Project Code and Demonstration                     To-Do      19 December 2023
-:::
+  | Task Item                                                 | Status     | Due/Completion Date
+  | --------------------------------------------------------- | ---------- | --------------------------------
+  | Compile Datasets from ECCC                                | Complete   | 25 October 2023
+  | Convert Compiled Dataset to Required Format               | Complete   | 26 October 2023
+  | Complete and Submit Project Proposal Document             | Complete   | 26 October 2023
+  | Program EAR, EJB and JavaFX Client components             | To-Do      | 12 December 2023
+  | Program Web Client, SOAP API and RESTful API Components   | To-Do      | 12 December 2023
+  | Test Components                                           | To-Do      | Ongoing, Due: 12 December 2023
+  | Documentation of Project                                  | To-Do      | Ongoing, Due: 12 December 2023
+  | Create Project Demonstration Video                        | To-Do      | 12 December 2023
+  | Submit Project Code and Demonstration                     | To-Do      | 19 December 2023
 
-::: {.section}
 ### References
 
 1.  [Wikipedia/Farmer's
@@ -121,19 +109,17 @@ the project implementation:
     Data Extract
     Tool](https://climate.weather.gc.ca/historical_data/search_historic_data_e.html)
 4.  Data Files:
-    -   [TemperatureData-2013-2023-Combined.arff](files/TemperatureData-2013-2023-Combined.arff)
-    -   [TemperatureData-2013-2023-Combined.csv](files/TemperatureData-2013-2023-Combined.csv)
-    -   [TemperatureData-2013.csv](files/TemperatureData-2013.csv)
-    -   [TemperatureData-2014.csv](files/TemperatureData-2014.csv)
-    -   [TemperatureData-2015.csv](files/TemperatureData-2015.csv)
-    -   [TemperatureData-2016.csv](files/TemperatureData-2016.csv)
-    -   [TemperatureData-2017.csv](files/TemperatureData-2017.csv)
-    -   [TemperatureData-2018.csv](files/TemperatureData-2018.csv)
-    -   [TemperatureData-2019.csv](files/TemperatureData-2019.csv)
-    -   [TemperatureData-2020.csv](files/TemperatureData-2020.csv)
-    -   [TemperatureData-2021.csv](files/TemperatureData-2021.csv)
-    -   [TemperatureData-2022.csv](files/TemperatureData-2022.csv)
-    -   [TemperatureData-2023.csv](files/TemperatureData-2023.csv)
-:::
-
-------------------------------------------------------------------------
+    -   [TemperatureData-2013-2023-Combined.arff](Proposal/files/TemperatureData-2013-2023-Combined.arff)
+    -   [TemperatureData-2013-2023-Combined.csv](Proposal/files/TemperatureData-2013-2023-Combined.csv)
+    -   [TemperatureData-2013.csv](Proposal/files/TemperatureData-2013.csv)
+    -   [TemperatureData-2014.csv](Proposal/files/TemperatureData-2014.csv)
+    -   [TemperatureData-2015.csv](Proposal/files/TemperatureData-2015.csv)
+    -   [TemperatureData-2016.csv](Proposal/files/TemperatureData-2016.csv)
+    -   [TemperatureData-2017.csv](Proposal/files/TemperatureData-2017.csv)
+    -   [TemperatureData-2018.csv](Proposal/files/TemperatureData-2018.csv)
+    -   [TemperatureData-2019.csv](Proposal/files/TemperatureData-2019.csv)
+    -   [TemperatureData-2020.csv](Proposal/files/TemperatureData-2020.csv)
+    -   [TemperatureData-2021.csv](Proposal/files/TemperatureData-2021.csv)
+    -   [TemperatureData-2022.csv](Proposal/files/TemperatureData-2022.csv)
+    -   [TemperatureData-2023.csv](Proposal/files/TemperatureData-2023.csv)
+	
