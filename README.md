@@ -26,7 +26,7 @@ of Ottawa was chosen.
 
 ### Problem Solving and Algorithms
 
-#### Dataset {#dataset style="margin-left: 30px;"}
+#### Dataset
 
 The datasets used for the project come from Environment and Climate
 Change Canada\'s (ECCC) Historical Data Extract tool, found
