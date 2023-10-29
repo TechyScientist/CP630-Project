@@ -1,0 +1,182 @@
+<style>
+	* {
+		margin: 0px;
+		padding: 0px;
+		font-family: "Calibri Light"
+	}
+			
+			
+	div#header {
+		background:purple;
+		padding: 20px;
+		color: white;
+		border: 2px solid gold;
+	}
+	
+	div.section {
+		margin: 10px 30px;
+	}
+	
+	div.section p {
+		margin-left: 20px;
+		margin-top: 10px;
+	}
+	
+	div.section ul, div.section ol {
+		margin-left: 60px;
+		margin-top: 10px;
+	}
+	
+	div.section ul li ul, div.section ol li ul {
+		margin-top: 0px;
+	}
+	
+	a {
+		color: purple;
+	}
+	
+	table, td, th {
+		border: 1px solid purple;
+		text-align: center;
+	}
+	
+	th {
+		color: purple;
+	}
+	
+	td, th {
+		padding: 10px;
+	}
+	
+</style>
+
+<div id="header">
+	<h1 id="cp630-project-proposal-temperature-prediction-using-a-linear-regression-model">CP630 Project Proposal: Temperature Prediction using a Linear Regression Model</h1>
+	<p>Author: Johnny Console (215803250)</p>
+	<p>24 October 2023</p>
+</div>
+
+<div class="section">
+	<h3 id="introduction">Introduction</h3>
+	<p>Temperatures vary year-to-year, month-to-month, and even day-by-day, but it is a generally good idea to predict what the temperature of a given day will be by using machine learning based off of the temperature data between January 2013 and October 2023.There exists a resource, The Farmers’ Almanac, that is meant to provide such predictions, generally speaking, across the United States and Canada, among many other things. This project aims to add specificity to the Almanac’s predictions by providing the average temperature for a given day, given historical temperature data.</p>
+	<p>The main goal of the project is to allow users to predict the temperature of a given day in the next year based on historical data.</p>
+	<p>Ideally, the project would also include the ability to predict daily temperatures for any city across Canada, but the dataset for these would be unmanageable to download for the scope of this project, so the city of Ottawa was chosen.</p>
+</div>
+
+<div class="section">
+	<h3 id="problem-solving-and-algorithms">Problem Solving and Algorithms</h3>
+	<h4 style="margin-left: 30px;">Dataset</h4>
+	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">The datasets used for the project come from Environment and Climate Change Canada's (ECCC) Historical Data Extract tool, found <a href="https://climate.weather.gc.ca/historical_data/search_historic_data_e.html">here</a>. This tool allows for downloading daily or hourly weather information gor a given year and month or day (for hourly data only) for any give weather station in Canada. The chosen station is <b>OTTAWA INTL A</b> (Ottawa International Airport [IATA: YOW, ICAO: CYOW]).</p>
+	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">Because the source gives the data in seperate CSV files, the data files from 2013-2023 were downloaded and combined into the included <a href="files/TemperatureData-2013-2023-Combined.csv">TemperatureData-2013-2023-Combined.csv</a> file, which was converted to ARFF format using Weka's GUI Interface. The converted ARFF file can be found <a href="files/TemperatureData-2013-2023-Combined.arff">here</a>. Individual historical data files can be accessed through the list in the References section. Extra data (Latitude, Longitude, and extra climate information), as well as rows with missing data, are removed from the combined dataset using Microsoft Excel prior to converting to ARFF format.</p>
+	<h4 style="margin-left: 30px";>Algorithm</h4>
+	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">The algorithm used to predict the temperature for the given day will be Weka's Linear Regression algorithm.</p>
+</div>
+
+<div class="section">
+	<h3 id="system-design">System Design</h3>
+	<p>The system will have the following components covered in this course:</p>
+	<ul class="incremental">
+		<li>Login page with two levels of user access:
+			<ul class="incremental">
+				<li><strong>Access Level 1: Administrators</strong> have access to the same features regular users do, but can also add or remove users (other than themselves) to the system.</li>
+				<li><strong>Access Level 2: Regular Users</strong> have access to a screen to allow the user to select a day in the next year to predict the average temperature of based on the linear regression.</li>
+			</ul></li>
+		<li>User passwords will be hashed using the BCrypt hashing algorithm when stored in the database and will be verified using the same algorithm when needed to increase security. The implementation of BCrypt found <a href="https://github.com/patrickfav/bcrypt">here</a> will be used, as it can easily be imported into the project as a Maven dependency.</li>
+		<li>SOAP and RESTful APIs to predict the temperature of a given day</li>
+	</ul>
+	<p>The following concepts and tools used in this course will be included in the project implementation:</p>
+	<ul class="incremental">
+		<li>Eclipse</li>
+		<li>Java EE</li>
+		<li>WildFly</li>
+		<li>JavaFX Client (for setup and creation/insertion of database and initial models)</li>
+		<li>Web Clients (HTTP, SOAP and RESTful)</li>
+		<li>MySQL (for entity persistence)</li>
+		<li>Stateless Session Beans</li>
+		<li>Entity Beans (for the user and the model)</li>
+		<li>Weka (for Linear Regression model)</li>
+	</ul>
+</div>
+
+<div class="section">
+	<h3 id="plan-and-schedule">Plan and Schedule</h3>
+	<table cellpadding="10">
+		<tr>
+			<th>Task Item</th>
+			<th>Status</th>
+			<th>Due/Completion Date</th>
+		</tr>
+		<tr>
+			<td>Compile Datasets from ECCC</td>
+			<td>Complete</td>
+			<td>25 October 2023</td>
+		</tr><tr>
+			<td>Convert Compiled Dataset to Required Format</td>
+			<td>Complete</td>
+			<td>26 October 2023</td>
+		</tr>
+		<tr>
+			<td>Complete and Submit Project Proposal Document</td>
+			<td>Complete</td>
+			<td>26 October 2023</td>
+		</tr>
+		<tr>
+			<td>Program EAR, EJB and JavaFX Client components</td>
+			<td>To-Do</td>
+			<td>12 December 2023</td>
+		</tr>
+		<tr>
+			<td>Program Web Client, SOAP API and RESTful API Components</td>
+			<td>To-Do</td>
+			<td>12 December 2023</td>
+		</tr>
+		<tr>
+			<td>Test Components</td>
+			<td>To-Do</td>
+			<td>Ongoing, Due: 12 December 2023</td>
+		</tr>
+		<tr>
+			<td>Documentation of Project</td>
+			<td>To-Do</td>
+			<td>Ongoing, Due: 12 December 2023</td>
+		</tr>
+		<tr>
+			<td>Create Project Demonstration Video</td>
+			<td>To-Do</td>
+			<td>12 December 2023</td>
+		</tr>
+		<tr>
+			<td>Submit Project Code and Demonstration</td>
+			<td>To-Do</td>
+			<td>19 December 2023</td>
+		</tr>
+	</table>
+
+</div>
+
+<div class="section">
+	<h3 id="references">References</h3>
+	<ol class="incremental" type="1">
+		<li><a href="https://en.wikipedia.org/wiki/Farmers%27_Almanac">Wikipedia/Farmer’s Almanac</a></li>
+		<li><a href="https://github.com/patrickfav/bcrypt">GitHub/patrickfav/bcrypt</a></li>
+		<li><a href="https://climate.weather.gc.ca/historical_data/search_historic_data_e.html">Environment and Climate Change Canada (ECCC) Historical Climate Data Extract Tool</a>
+		<li>Data Files:
+			<ul style="list-style-type: disc;">
+				<li><a href="files/TemperatureData-2013-2023-Combined.arff">TemperatureData-2013-2023-Combined.arff</a></li>
+				<li><a href="files/TemperatureData-2013-2023-Combined.csv">TemperatureData-2013-2023-Combined.csv</a></li>
+				<li><a href="files/TemperatureData-2013.csv">TemperatureData-2013.csv</a></li>
+				<li><a href="files/TemperatureData-2014.csv">TemperatureData-2014.csv</a></li>
+				<li><a href="files/TemperatureData-2015.csv">TemperatureData-2015.csv</a></li>
+				<li><a href="files/TemperatureData-2016.csv">TemperatureData-2016.csv</a></li>
+				<li><a href="files/TemperatureData-2017.csv">TemperatureData-2017.csv</a></li>
+				<li><a href="files/TemperatureData-2018.csv">TemperatureData-2018.csv</a></li>
+				<li><a href="files/TemperatureData-2019.csv">TemperatureData-2019.csv</a></li>
+				<li><a href="files/TemperatureData-2020.csv">TemperatureData-2020.csv</a></li>
+				<li><a href="files/TemperatureData-2021.csv">TemperatureData-2021.csv</a></li>
+				<li><a href="files/TemperatureData-2022.csv">TemperatureData-2022.csv</a></li>
+				<li><a href="files/TemperatureData-2023.csv">TemperatureData-2023.csv</a></li>
+			</ul></li>
+	</ol>
+</div>
+
+<hr noshade color="purple" size="20px"/>
