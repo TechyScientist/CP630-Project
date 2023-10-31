@@ -11,9 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import net.johnnyconsole.cp630.project.dialog.ConfirmAppCloseDialog;
 
 public class TemperatureClient extends Application {
 
+    @Override
     public void start(Stage ps) {
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(20));
@@ -43,6 +45,11 @@ public class TemperatureClient extends Application {
         pane.addRow(2, new Label("Enter Password:"), password);
         pane.addRow(3, close, signin);
         pane.add(setup, 0, 4, 2, 1);
+
+        close.setOnAction(e -> {
+            ps.close();
+            new ConfirmAppCloseDialog().start(new Stage());
+        });
 
 
         ps.setScene(new Scene(pane));
