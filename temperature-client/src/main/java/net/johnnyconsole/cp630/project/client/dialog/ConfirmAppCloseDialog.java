@@ -1,4 +1,4 @@
-package net.johnnyconsole.cp630.project.dialog;
+package net.johnnyconsole.cp630.project.client.dialog;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;
@@ -6,12 +6,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import net.johnnyconsole.cp630.project.TemperatureClient;
+import net.johnnyconsole.cp630.project.client.TemperatureClient;
 
 public class ConfirmAppCloseDialog extends Application {
 

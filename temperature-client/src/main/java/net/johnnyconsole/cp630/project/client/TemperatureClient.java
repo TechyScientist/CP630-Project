@@ -1,4 +1,4 @@
-package net.johnnyconsole.cp630.project;
+package net.johnnyconsole.cp630.project.client;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;
@@ -11,7 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import net.johnnyconsole.cp630.project.dialog.ConfirmAppCloseDialog;
+import net.johnnyconsole.cp630.project.client.dialog.ConfirmAppCloseDialog;
+import net.johnnyconsole.cp630.project.client.window.SetupWindow;
 
 public class TemperatureClient extends Application {
 
@@ -27,11 +28,11 @@ public class TemperatureClient extends Application {
                 close = new Button("Close");
 
         setup.setMaxWidth(Double.MAX_VALUE);
-        setup.setMinHeight(30);
+        setup.setMinHeight(40);
         signin.setMaxWidth(Double.MAX_VALUE);
-        signin.setMinHeight(30);
+        signin.setMinHeight(40);
         close.setMaxWidth(Double.MAX_VALUE);
-        close.setMinHeight(30);
+        close.setMinHeight(40);
 
         Label header = new Label("Temperature Client: Sign In");
         header.setFont(Font.font(20));
@@ -51,6 +52,10 @@ public class TemperatureClient extends Application {
             new ConfirmAppCloseDialog().start(new Stage());
         });
 
+        setup.setOnAction(e -> {
+            ps.close();
+            new SetupWindow().start(new Stage());
+        });
 
         ps.setScene(new Scene(pane));
         ps.setTitle("Client Sign In");
