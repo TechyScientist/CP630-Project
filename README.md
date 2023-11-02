@@ -24,7 +24,7 @@ temperatures for any city across Canada, but the dataset for these would
 be unmanageable to download for the scope of this project, so the city
 of Ottawa was chosen.
 
-### Problem Solving and Algorithms
+### Problem-Solving and Algorithms
 
 #### Dataset
 
@@ -36,7 +36,7 @@ a given year and month or day (for hourly data only) for any give
 weather station in Canada. The chosen station is **OTTAWA INTL A**
 (Ottawa International Airport \[IATA: YOW, ICAO: CYOW\]).
 
-Because the source gives the data in seperate CSV files, the data files
+Because the source gives the data in separate CSV files, the data files
 from 2013-2023 were downloaded and combined into the included
 [TemperatureData-2013-2023-Combined.csv](Proposal/files/TemperatureData-2013-2023-Combined.csv)
 file, which was converted to ARFF format using Weka\'s GUI Interface.
@@ -88,17 +88,17 @@ the project implementation:
 
 ### Plan and Schedule
 
-  | Task Item                                                 | Status     | Due/Completion Date
-  | --------------------------------------------------------- | ---------- | --------------------------------
-  | Compile Datasets from ECCC                                | Complete   | 25 October 2023
-  | Convert Compiled Dataset to Required Format               | Complete   | 26 October 2023
-  | Complete and Submit Project Proposal Document             | Complete   | 26 October 2023
-  | Program EAR, EJB and JavaFX Client components             | To-Do      | 12 December 2023
-  | Program Web Client, SOAP API and RESTful API Components   | To-Do      | 12 December 2023
-  | Test Components                                           | To-Do      | Ongoing, Due: 12 December 2023
-  | Documentation of Project                                  | To-Do      | Ongoing, Due: 12 December 2023
-  | Create Project Demonstration Video                        | To-Do      | 12 December 2023
-  | Submit Project Code and Demonstration                     | To-Do      | 19 December 2023
+  | Task Item                                               | Status   | Due/Completion Date            |
+  |---------------------------------------------------------|----------|--------------------------------|
+  | Compile Datasets from ECCC                              | Complete | 25 October 2023                |
+  | Convert Compiled Dataset to Required Format             | Complete | 26 October 2023                |  
+  | Complete and Submit Project Proposal Document           | Complete | 26 October 2023                |  
+  | Program EAR, EJB and JavaFX Client components           | To-Do    | 12 December 2023               |
+  | Program Web Client, SOAP API and RESTful API Components | To-Do    | 12 December 2023               |
+  | Test Components                                         | To-Do    | Ongoing, Due: 12 December 2023 |
+  | Documentation of Project                                | To-Do    | Ongoing, Due: 12 December 2023 |
+  | Create Project Demonstration Video                      | To-Do    | 12 December 2023               |
+  | Submit Project Code and Demonstration                   | To-Do    | 19 December 2023               |
 
 ### References
 
