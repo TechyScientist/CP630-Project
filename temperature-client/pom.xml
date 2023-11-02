@@ -18,6 +18,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-client-all</artifactId>
             <version>18.0.1.Final</version>
@@ -68,6 +73,7 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.36</version>
         </dependency> -->
+        <!-- https://mvnrepository.com/artifact/at.favre.lib/bcrypt -->
     </dependencies>
     <build>
         <plugins>
