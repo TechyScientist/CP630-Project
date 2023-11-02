@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import net.johnnyconsole.cp630.project.client.TemperatureClient;
 
 public class SetupWindow extends Application {
 
@@ -38,6 +39,16 @@ public class SetupWindow extends Application {
 
         pane.add(back, 0, 5, 2, 1);
 
+
+        back.setOnAction(e -> {
+            ps.close();
+            new TemperatureClient().start(new Stage());
+        });
+
+        ps.setOnCloseRequest(e -> {
+            ps.close();
+            new TemperatureClient().start(new Stage());
+        });
 
         ps.setScene(new Scene(pane));
         ps.setTitle("Setup");
