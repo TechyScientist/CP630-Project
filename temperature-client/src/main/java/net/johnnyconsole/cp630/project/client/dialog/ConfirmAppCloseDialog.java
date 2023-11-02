@@ -24,9 +24,9 @@ public class ConfirmAppCloseDialog extends Application {
                 no = new Button("No");
 
         yes.setMaxWidth(Double.MAX_VALUE);
-        yes.setMinHeight(30);
+        yes.setMinHeight(40);
         no.setMaxWidth(Double.MAX_VALUE);
-        no.setMinHeight(30);
+        no.setMinHeight(40);
 
         Label header = new Label("Are you sure you want to exit?");
         header.setFont(Font.font(20));
@@ -42,6 +42,10 @@ public class ConfirmAppCloseDialog extends Application {
 
         yes.setOnAction(e -> ps.close());
 
+        ps.setOnCloseRequest(e -> {
+            ps.close();
+            new TemperatureClient().start(new Stage());
+        });
 
         ps.setScene(new Scene(pane));
         ps.setTitle("Client Sign In");

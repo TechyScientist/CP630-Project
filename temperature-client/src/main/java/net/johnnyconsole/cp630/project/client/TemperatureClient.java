@@ -57,6 +57,11 @@ public class TemperatureClient extends Application {
             new SetupWindow().start(new Stage());
         });
 
+        ps.setOnCloseRequest(e -> {
+            ps.close();
+            new ConfirmAppCloseDialog().start(new Stage());
+        });
+
         ps.setScene(new Scene(pane));
         ps.setTitle("Client Sign In");
         ps.show();
