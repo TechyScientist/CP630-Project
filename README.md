@@ -75,7 +75,7 @@ The system will have the following components covered in this course:
 The following concepts and tools used in this course will be included in
 the project implementation:
 
--   Eclipse
+-   IntelliJ IDEA
 -   Java EE
 -   WildFly
 -   JavaFX Client (for setup and creation/insertion of database and
@@ -88,17 +88,17 @@ the project implementation:
 
 ### Plan and Schedule
 
-  | Task Item                                               | Status   | Due/Completion Date            |
-  |---------------------------------------------------------|----------|--------------------------------|
-  | Compile Datasets from ECCC                              | Complete | 25 October 2023                |
-  | Convert Compiled Dataset to Required Format             | Complete | 26 October 2023                |  
-  | Complete and Submit Project Proposal Document           | Complete | 26 October 2023                |  
-  | Program EAR, EJB and JavaFX Client components           | To-Do    | 12 December 2023               |
-  | Program Web Client, SOAP API and RESTful API Components | To-Do    | 12 December 2023               |
-  | Test Components                                         | To-Do    | Ongoing, Due: 12 December 2023 |
-  | Documentation of Project                                | To-Do    | Ongoing, Due: 12 December 2023 |
-  | Create Project Demonstration Video                      | To-Do    | 12 December 2023               |
-  | Submit Project Code and Demonstration                   | To-Do    | 19 December 2023               |
+  | Task Item                                               | Status      | Due/Completion Date            |
+  |---------------------------------------------------------|-------------|--------------------------------|
+  | Compile Datasets from ECCC                              | Complete    | 25 October 2023                |
+  | Convert Compiled Dataset to Required Format             | Complete    | 26 October 2023                |  
+  | Complete and Submit Project Proposal Document           | Complete    | 26 October 2023                |  
+  | Program EAR, EJB and JavaFX Client components           | In Progress | 12 December 2023               |
+  | Program Web Client, SOAP API and RESTful API Components | To-Do       | 12 December 2023               |
+  | Test Components                                         | To-Do       | Ongoing, Due: 12 December 2023 |
+  | Documentation of Project                                | To-Do       | Ongoing, Due: 12 December 2023 |
+  | Create Project Demonstration Video                      | To-Do       | 12 December 2023               |
+  | Submit Project Code and Demonstration                   | To-Do       | 19 December 2023               |
 
 ### References
 
