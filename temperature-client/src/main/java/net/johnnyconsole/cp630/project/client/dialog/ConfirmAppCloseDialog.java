@@ -48,7 +48,7 @@ public class ConfirmAppCloseDialog extends Application {
         });
 
         ps.setScene(new Scene(pane));
-        ps.setTitle("Client Sign In");
+        ps.setTitle("Confirm App Close");
         ps.show();
     }
 }
