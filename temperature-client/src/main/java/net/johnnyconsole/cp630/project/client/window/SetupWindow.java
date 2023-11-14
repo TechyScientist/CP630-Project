@@ -1,7 +1,6 @@
 package net.johnnyconsole.cp630.project.client.window;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import com.mysql.cj.jdbc.Driver;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -9,11 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.johnnyconsole.cp630.project.client.TemperatureClient;
+import net.johnnyconsole.cp630.project.client.util.Database;
+import weka.classifiers.functions.LinearRegression;
+import weka.core.Instances;
+import weka.core.SelectedTag;
+import weka.core.converters.ConverterUtils;
 
+import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SetupWindow extends Application {
@@ -57,6 +64,13 @@ public class SetupWindow extends Application {
             }
         });
 
+        genRegression.setOnAction(e -> {
+            if(generateRegression(model.getText())) {
+                genRegression.setDisable(true);
+                genRegression.setText("Regression Model Created");
+            }
+        });
+
 
         back.setOnAction(e -> {
             ps.close();
@@ -74,14 +88,8 @@ public class SetupWindow extends Application {
     }
 
     private boolean createDatabase() {
-        try {
-            String url = "jdbc:mysql://localhost:3306/test?serverTimezone=America/Toronto",
-                    username = "root",
-                    password = "",
-                    adminPassword = BCrypt.withDefaults().hashToString(12, "Admin123!".toCharArray());
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, username, password);
+        try(Connection conn = Database.connect()) {
+            String adminPassword = BCrypt.withDefaults().hashToString(12, "Admin123!".toCharArray());
 
             String sql = "CREATE TABLE IF NOT EXISTS cons3250_project_model (" +
                     "name VARCHAR(100) PRIMARY KEY NOT NULL," +
@@ -104,9 +112,38 @@ public class SetupWindow extends Application {
             stmt.execute(sql);
 
             return true;
-        } catch(Exception e ) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } catch(SQLException e) {
+            System.err.println("SQLException in SetupWindow.createDatabase: " + e.getMessage());
             System.err.flush();
+            return false;
+        }
+    }
+
+    private boolean generateRegression(String modelName) {
+        try(Connection conn = Database.connect()) {
+            if (modelName == null || modelName.isEmpty()) return false;
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Select Dataset File");
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("ARFF Dataset Files (*.arff)", "*.arff"));
+            File dataset = chooser.showOpenDialog(new Stage());
+
+            Instances dataInstances = ConverterUtils.DataSource.read(dataset.getPath());
+            dataInstances.setClassIndex(dataInstances.numAttributes() - 1);
+
+            LinearRegression regression = new LinearRegression();
+            SelectedTag tag = new SelectedTag(LinearRegression.SELECTION_NONE, LinearRegression.TAGS_SELECTION);
+            regression.setAttributeSelectionMethod(tag);
+            regression.buildClassifier(dataInstances);
+
+            String sql = "INSERT IGNORE INTO cons3250_project_model (name, class, object) VALUES (?,?,?);";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, modelName);
+            stmt.setString(2, regression.getClass().getName());
+            stmt.setObject(3, regression);
+            stmt.execute();
+            return true;
+        } catch(Exception e) {
             return false;
         }
     }
