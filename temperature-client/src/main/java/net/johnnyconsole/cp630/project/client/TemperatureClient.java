@@ -1,5 +1,6 @@
 package net.johnnyconsole.cp630.project.client;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -11,8 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.sql.ResultSet;
 import net.johnnyconsole.cp630.project.client.dialog.ConfirmAppCloseDialog;
+import net.johnnyconsole.cp630.project.client.dialog.SignInErrorDialog;
+import net.johnnyconsole.cp630.project.client.util.Database;
 import net.johnnyconsole.cp630.project.client.window.SetupWindow;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class TemperatureClient extends Application {
 
@@ -52,6 +60,15 @@ public class TemperatureClient extends Application {
             new ConfirmAppCloseDialog().start(new Stage());
         });
 
+        signin.setOnAction(e -> {
+            if(signIn(username.getText().toLowerCase(), password.getText())) {
+                ps.close();
+                System.out.println("Sign In Successful!");
+            } else {
+                new SignInErrorDialog().start(new Stage());
+            }
+        });
+
         setup.setOnAction(e -> {
             ps.close();
             new SetupWindow().start(new Stage());
@@ -65,6 +82,27 @@ public class TemperatureClient extends Application {
         ps.setScene(new Scene(pane));
         ps.setTitle("Client Sign In");
         ps.show();
+    }
+
+    private boolean signIn(String username, String password) {
+        try(Connection conn = Database.connect()) {
+            if(username == null || username.isEmpty() || password == null || password.isEmpty()) return false;
+            String sql = "SELECT * FROM cons3250_project_user WHERE username = '" + username + "';";
+            Statement stmt = conn.createStatement();
+            ResultSet set = stmt.executeQuery(sql);
+            if(set.next()) {
+                String hash = set.getString("password");
+                if(BCrypt.verifyer().verify(password.getBytes(), hash.getBytes()).verified) {
+                    System.out.println("Access Granted: User(Username: " + username + ", Name: " + set.getString("name") + ", Access Level: " + set.getInt("accessLevel") + ")");
+                    return true;
+                }
+                else return false;
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + " in TemperatureClient.signIn: " + e.getMessage());
+            return false;
+        }
     }
 
     public static void main(String[] args) {
