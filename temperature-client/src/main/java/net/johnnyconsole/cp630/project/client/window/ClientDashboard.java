@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import net.johnnyconsole.cp630.project.client.pane.PredictionPane;
 import net.johnnyconsole.cp630.project.client.util.AccessLevel;
 import net.johnnyconsole.cp630.project.client.util.ApplicationSession;
 
@@ -31,6 +32,7 @@ public class ClientDashboard extends Application {
         TabPane dashboard = new TabPane();
         Tab predictionTab = new Tab("Prediction"),
                 adminTab = new Tab("Administrator");
+        predictionTab.setContent(new PredictionPane());
         predictionTab.setClosable(false);
         adminTab.setClosable(false);
 
