@@ -18,8 +18,17 @@
 __Note__: Steps 6, 7 and 8 above only need to be completed __once__. If you have already done these steps, you can proceed to step 9 below.
 
 9. Select the "Back" button to log in. By default, there are __two__ users configured:
-   * __Username__: user, __Password__: User123!, Access Level 0 (Standard)
-   * __Username__: admin, __Password__: Admin123!, Access Level 1 (Administrator)
+   * __Username__: user
+   
+      __Password__: User123!
+ 
+      __Access Level 0 (Standard)__
+   * __Username__: admin
+     
+      __Password__: Admin123!
+   
+      __Access Level 1 (Administrator)__
+
 10. To predict a day's temperature, selec the "Prediction" tab and enter the year, month and day to predict, and press the "Predict" button. The result of the prediction will be shown under the button.
 11. __Administrator Users Only__: To add or remove users, select the "Administration" tab and click the appropriate button, and enter the information required by the window.
 12. To Sign Out, select the "Sign Out" button, or close the dashboard window.
