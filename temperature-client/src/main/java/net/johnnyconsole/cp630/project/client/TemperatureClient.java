@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import java.sql.ResultSet;
 import net.johnnyconsole.cp630.project.client.dialog.ConfirmAppCloseDialog;
 import net.johnnyconsole.cp630.project.client.dialog.SignInErrorDialog;
+import net.johnnyconsole.cp630.project.client.util.ApplicationSession;
 import net.johnnyconsole.cp630.project.client.util.Database;
+import net.johnnyconsole.cp630.project.client.window.ClientDashboard;
 import net.johnnyconsole.cp630.project.client.window.SetupWindow;
 
 import java.sql.Connection;
@@ -63,7 +65,7 @@ public class TemperatureClient extends Application {
         signin.setOnAction(e -> {
             if(signIn(username.getText().toLowerCase(), password.getText())) {
                 ps.close();
-                System.out.println("Sign In Successful!");
+                new ClientDashboard().start(new Stage());
             } else {
                 new SignInErrorDialog().start(new Stage());
             }
@@ -93,7 +95,12 @@ public class TemperatureClient extends Application {
             if(set.next()) {
                 String hash = set.getString("password");
                 if(BCrypt.verifyer().verify(password.getBytes(), hash.getBytes()).verified) {
-                    System.out.println("Access Granted: User(Username: " + username + ", Name: " + set.getString("name") + ", Access Level: " + set.getInt("accessLevel") + ")");
+                    System.out.println("Access Granted: User(Username: " + username + ", Name: " +
+                            set.getString("name") + ", Access Level: "
+                            + (set.getInt("accessLevel") == 0 ? " Administrator" : "Standard") + ")");
+                    ApplicationSession.username = username;
+                    ApplicationSession.name = set.getString("name");
+                    ApplicationSession.accessLevel = set.getInt("accessLevel");
                     return true;
                 }
                 else return false;
