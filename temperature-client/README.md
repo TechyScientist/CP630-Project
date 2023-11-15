@@ -7,16 +7,10 @@
     ```cd ../temperature-app```
 
     ```mvn clean install wildfly:deploy```
-4. Package the temperature-client app:
-    
-    ```mvn clean package```
-5. Run the packaged JAR File:
+4. Package the temperature-client app: ```mvn clean package```
+5. Run the packaged JAR File: ```java -jar target/temperature-client.jar```
 
-    ```java -jar target/temperature-client.jar```
-
-    __Note:__ You can also run the JAR file at the time of building with:
-
-    ```mvn clean package exec:java```
+    __Note:__ You can also run the JAR file at the time of building with: ```mvn clean package exec:java```
 6. Select the "Setup" button
 7. Select the "Create Database" Button
 8. Enter a name for the regression model, and press the "Generate Regression Model..." button to select the [dataset file](../Proposal/files/TemperatureData-2013-2023-Combined.arff).
