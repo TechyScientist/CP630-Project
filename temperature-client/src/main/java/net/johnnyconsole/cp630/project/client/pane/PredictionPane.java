@@ -1,6 +1,5 @@
 package net.johnnyconsole.cp630.project.client.pane;
 
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

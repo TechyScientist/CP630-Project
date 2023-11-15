@@ -21,7 +21,6 @@ import net.johnnyconsole.cp630.project.client.window.ClientDashboard;
 import net.johnnyconsole.cp630.project.client.window.SetupWindow;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class TemperatureClient extends Application {
