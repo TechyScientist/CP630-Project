@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.johnnyconsole.cp630.project.client.TemperatureClient;
 import net.johnnyconsole.cp630.project.client.util.Database;
+import net.johnnyconsole.cp630.project.client.util.AccessLevel;
 import weka.classifiers.functions.LinearRegression;
 import weka.core.Instances;
 import weka.core.SelectedTag;
@@ -89,7 +90,8 @@ public class SetupWindow extends Application {
 
     private boolean createDatabase() {
         try(Connection conn = Database.connect()) {
-            String adminPassword = BCrypt.withDefaults().hashToString(12, "Admin123!".toCharArray());
+            String adminPassword = BCrypt.withDefaults().hashToString(12, "Admin123!".toCharArray()),
+                    userPassword = BCrypt.withDefaults().hashToString(12, "User123!".toCharArray());
 
             String sql = "CREATE TABLE IF NOT EXISTS cons3250_project_model (" +
                     "name VARCHAR(100) PRIMARY KEY NOT NULL," +
@@ -108,9 +110,11 @@ public class SetupWindow extends Application {
                     ");";
             stmt.execute(sql);
 
-            sql = "INSERT IGNORE INTO cons3250_project_user (username, name, password) VALUES('admin', 'Administrator','" + adminPassword + "');";
+            sql = "INSERT IGNORE INTO cons3250_project_user (username, name, password, accessLevel) VALUES('admin', 'Administrator','" + adminPassword + "'," +  AccessLevel.ACCESS_ELEVATED + ");";
             stmt.execute(sql);
 
+            sql = "INSERT IGNORE INTO cons3250_project_user (username, name, password) VALUES('user', 'User','" + userPassword + "');";
+            stmt.execute(sql);
             return true;
         } catch(SQLException e) {
             System.err.println("SQLException in SetupWindow.createDatabase: " + e.getMessage());
