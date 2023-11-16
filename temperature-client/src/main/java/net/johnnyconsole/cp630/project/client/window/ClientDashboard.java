@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import net.johnnyconsole.cp630.project.client.TemperatureClient;
+import net.johnnyconsole.cp630.project.client.pane.AdministrationPane;
 import net.johnnyconsole.cp630.project.client.pane.PredictionPane;
 import net.johnnyconsole.cp630.project.client.util.AccessLevel;
 import net.johnnyconsole.cp630.project.client.util.ApplicationSession;
@@ -30,7 +31,7 @@ public class ClientDashboard extends Application {
                         : ApplicationSession.name) + "!");
         TabPane dashboard = new TabPane();
         Tab predictionTab = new Tab("Prediction"),
-                adminTab = new Tab("Administrator");
+                adminTab = new Tab("Administration");
         Button signOut = new Button("Sign Out");
 
         header.setFont(Font.font(20));
@@ -38,12 +39,14 @@ public class ClientDashboard extends Application {
 
         predictionTab.setContent(new PredictionPane());
         predictionTab.setClosable(false);
-        adminTab.setClosable(false);
 
         dashboard.getTabs().add(predictionTab);
         if(ApplicationSession.accessLevel == AccessLevel.ACCESS_ELEVATED) {
+            adminTab.setContent(new AdministrationPane());
             dashboard.getTabs().add(adminTab);
+            adminTab.setClosable(false);
         }
+
         signOut.setMaxWidth(Double.MAX_VALUE);
         signOut.setMinHeight(40);
 
