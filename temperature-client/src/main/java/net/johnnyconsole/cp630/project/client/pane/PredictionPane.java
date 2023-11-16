@@ -58,7 +58,7 @@ public class PredictionPane extends GridPane {
         add(predict, 0, 3, 2, 1);
         add(prediction, 0, 5, 2, 1);
 
-        setMinWidth(500);
+        setMinWidth(1000);
     }
 
 
