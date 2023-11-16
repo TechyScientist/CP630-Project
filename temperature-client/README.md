@@ -29,7 +29,7 @@ __Note__: Steps 6, 7 and 8 above only need to be completed __once__. If you have
    
       __Access Level 1 (Administrator)__
 
-10. To predict a day's temperature, selec the "Prediction" tab and enter the year, month and day to predict, and press the "Predict" button. The result of the prediction will be shown under the button.
-11. __Administrator Users Only__: To add or remove users, select the "Administration" tab and click the appropriate button, and enter the information required by the window.
+10. To predict a day's temperature, select the "Prediction" tab and enter the year, month and day to predict, and press the "Predict" button. The result of the prediction will be shown under the button.
+11. __Administrator Users Only__: To add or remove users, select the "Administration" tab and fill in the appropriate form.
 12. To Sign Out, select the "Sign Out" button, or close the dashboard window.
 13. To close the app, sign out, then press the "Exit" button (or close the sign in window), and select "Yes" in the confirmation box. __Note__: Any other input (i.e.,  clicking the "No" button or closing the confirmation box) will __not__ close the app, and will bring you back to the sign in screen.
