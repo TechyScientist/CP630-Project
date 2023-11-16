@@ -10,8 +10,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class SignInErrorDialog extends Application {
+public class ErrorDialog extends Application {
 
+    private String message;
+    public ErrorDialog(String message) {
+        this.message = message;
+    }
     @Override
     public void start(Stage ps) {
         GridPane pane = new GridPane();
@@ -24,7 +28,7 @@ public class SignInErrorDialog extends Application {
         dismiss.setMaxWidth(Double.MAX_VALUE);
         dismiss.setMinHeight(40);
 
-        Label header = new Label("Sign In Error: Please Try Again");
+        Label header = new Label(message);
         header.setFont(Font.font(20));
         GridPane.setHalignment(header, HPos.CENTER);
 
@@ -35,7 +39,7 @@ public class SignInErrorDialog extends Application {
         dismiss.setOnAction(e -> ps.close());
 
         ps.setScene(new Scene(pane));
-        ps.setTitle("Sign In Error");
+        ps.setTitle("Error");
         ps.show();
     }
 }

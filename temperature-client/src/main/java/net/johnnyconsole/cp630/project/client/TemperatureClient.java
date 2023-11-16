@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.sql.ResultSet;
 import net.johnnyconsole.cp630.project.client.dialog.ConfirmAppCloseDialog;
-import net.johnnyconsole.cp630.project.client.dialog.SignInErrorDialog;
+import net.johnnyconsole.cp630.project.client.dialog.ErrorDialog;
 import net.johnnyconsole.cp630.project.client.util.ApplicationSession;
 import net.johnnyconsole.cp630.project.client.util.Database;
 import net.johnnyconsole.cp630.project.client.window.ClientDashboard;
@@ -66,7 +66,7 @@ public class TemperatureClient extends Application {
                 ps.close();
                 new ClientDashboard().start(new Stage());
             } else {
-                new SignInErrorDialog().start(new Stage());
+                new ErrorDialog("Sign In Error: Please Try Again").start(new Stage());
             }
         });
 
