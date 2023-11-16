@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -55,6 +56,28 @@ public class TemperatureClient extends Application {
         pane.addRow(2, new Label("Enter Password:"), password);
         pane.addRow(3, close, signin);
         pane.add(setup, 0, 4, 2, 1);
+
+        username.setOnKeyPressed(k -> {
+            if(k.getCode() == KeyCode.ENTER) {
+                if(signIn(username.getText().toLowerCase(), password.getText())) {
+                    ps.close();
+                    new ClientDashboard().start(new Stage());
+                } else {
+                    new ErrorDialog("Sign In Error: Please Try Again").start(new Stage());
+                }
+            }
+        });
+
+        password.setOnKeyPressed(k -> {
+            if(k.getCode() == KeyCode.ENTER) {
+                if(signIn(username.getText().toLowerCase(), password.getText())) {
+                    ps.close();
+                    new ClientDashboard().start(new Stage());
+                } else {
+                    new ErrorDialog("Sign In Error: Please Try Again").start(new Stage());
+                }
+            }
+        });
 
         close.setOnAction(e -> {
             ps.close();
