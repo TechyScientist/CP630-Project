@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>net.johnnyconsole.cp630.project.web.servlet.LoginServlet</servlet-class>
+    </servlet>
+</web-app>
