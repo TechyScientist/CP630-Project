@@ -2,6 +2,7 @@ package net.johnnyconsole.cp630.project.web.servlet;
 
 import net.johnnyconsole.cp630.project.persistence.User;
 import net.johnnyconsole.cp630.project.persistence.interfaces.UserDao;
+import net.johnnyconsole.cp630.project.web.util.ApplicationSession;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,14 +19,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username"),
+        String username = request.getParameter("username").toLowerCase(),
                 password = request.getParameter("password");
         if(userDao.verifyUser(username, password)) {
             User user = userDao.getUser(username);
-            response.getWriter().println(user);
+            ApplicationSession.set(username, user.getName(), user.getAccessLevel());
+            response.sendRedirect("/temperature-web/dashboard.jsp");
         }
         else {
-            response.getWriter().println("OOPS: No User found");
+            response.sendRedirect("/temperature-web?error=login");
         }
     }
 }

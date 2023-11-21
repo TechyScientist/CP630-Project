@@ -48,6 +48,15 @@
             height: 20px;
             background-color: purple;
         }
+
+        p#error {
+            background-color: darkred;
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -58,6 +67,16 @@
     <h5>Author: Johnny Console (215803250)</h5>
 </div>
 <div id="body">
+    <% if(request.getParameter("error") != null && !request.getParameter("error").isEmpty()) {%>
+        <p id="error">
+            <% if(request.getParameter("error").equals("login")) {%>
+                Invalid credentials: Please try again.
+            <% } %>
+            <% if(request.getParameter("error").equals("notloggedin")) { %>
+                You must be logged in to access this page. Please log in below to continue.
+            <% }
+            } %>
+        </p>
     <h3>Log In</h3>
     <form action="/temperature-web/LoginServlet" method="post">
         <label for="username">Enter Username:</label>
