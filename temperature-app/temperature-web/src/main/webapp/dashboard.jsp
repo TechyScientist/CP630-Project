@@ -79,7 +79,7 @@
         <input type="submit" value="Log Out"/>
     </form>
     <h3>Predict Temperature</h3>
-    <form action="/temperature-web/TemperaturePredictionServlet" method="post">
+    <form action="" method="post">
         <label for="year">Year:</label>
         <select name="year" id="year">
             <% for(int i = 2000; i <= 2030; i++) { %>
