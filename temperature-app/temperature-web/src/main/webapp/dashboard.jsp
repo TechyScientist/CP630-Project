@@ -49,6 +49,20 @@
             height: 20px;
             background-color: purple;
         }
+
+        div.horiz {
+            display: inline-block;
+            margin-right: 50px;
+        }
+
+        div#left {
+            clear:right;
+        }
+
+        div#right {
+            clear: left;
+            vertical-align: top;
+        }
     </style>
 </head>
 
@@ -60,6 +74,10 @@
 </div>
 <div id="body">
     <%if(username != null) {%>
+    <h2>Welcome, <%= name.contains(" ") ? name.substring(0, name.indexOf(' ')) : name %>!</h2><br/>
+    <form action="/temperature-web/LogOutServlet" method="post">
+        <input type="submit" value="Log Out"/>
+    </form>
     <h3>Predict Temperature</h3>
     <form action="/temperature-web/TemperaturePredictionServlet" method="post">
         <label for="year">Year:</label>
@@ -91,15 +109,36 @@
         </select><br/><br/>
         <input type="submit" value="Predict"/>
     </form>
-    <!-- <h3>Log In</h3>
-     <form action="/temperature-web/LoginServlet" method="post">
-         <label for="username">Enter Username:</label>
-         <input type="text" name="username" id="username" required /><br/><br/>
-         <label for="password">Enter Password:</label>
-         <input type="password" name="password" id="password" required/><br/><br/>
-         <input type="submit" value="Log In"/>
-     </form> -->
-    <% } else {
+    <% if(accessLevel == 1) { %>
+        <div style="display: -webkit-box; -webkit-box-orient: horizontal;">
+            <div class="horiz" id="left">
+                <h3>Add a User</h3>
+                <form action="" method="post">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" required/><br/><br/>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" required/><br/><br/>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required/><br/><br/>
+                    <label for="accessLevel">Name:</label>
+                    <select name="accessLevel" id="accessLevel">
+                        <option value="0">Standard</option>
+                        <option value="1">Elevated</option>
+                    </select><br/><br/>
+                    <input type="submit" value="Add User"/>
+                </form>
+            </div>
+            <div class="horiz" id="right">
+                <h3>Remove User</h3>
+                <form action="" method="post">
+                    <label for="user">Select User:</label>
+                    <input type="text" name="user" id="user" required/><br/><br/>
+                    <input type="submit" value="Remove User"/>
+                </form>
+            </div>
+        </div>
+    <% }
+    } else {
         response.sendRedirect("/temperature-web/?error=notloggedin");
      } %>
 </div>
