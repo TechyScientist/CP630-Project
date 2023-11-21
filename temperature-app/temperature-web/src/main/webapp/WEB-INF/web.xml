@@ -4,4 +4,8 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>net.johnnyconsole.cp630.project.web.servlet.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogOutServlet</servlet-name>
+        <servlet-class>net.johnnyconsole.cp630.project.web.servlet.LogOutServlet</servlet-class>
+    </servlet>
 </web-app>

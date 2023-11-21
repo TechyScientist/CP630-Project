@@ -57,6 +57,15 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+
+        p#success {
+            background-color: darkgreen;
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -67,16 +76,17 @@
     <h5>Author: Johnny Console (215803250)</h5>
 </div>
 <div id="body">
-    <% if(request.getParameter("error") != null && !request.getParameter("error").isEmpty()) {%>
-        <p id="error">
-            <% if(request.getParameter("error").equals("login")) {%>
-                Invalid credentials: Please try again.
-            <% } %>
-            <% if(request.getParameter("error").equals("notloggedin")) { %>
-                You must be logged in to access this page. Please log in below to continue.
-            <% }
-            } %>
-        </p>
+    <% if(request.getParameter("error") != null && !request.getParameter("error").isEmpty()) {
+        if(request.getParameter("error").equals("login")) {%>
+            <p id="error">Invalid credentials: Please try again.</p>
+        <% } else if(request.getParameter("error").equals("notloggedin")) { %>
+            <p id="error">You must be logged in to access this page. Please log in below to continue.</p>
+        <% }
+    } else if(request.getParameter("action") != null && !request.getParameter("action").isEmpty()) {
+            if(request.getParameter("action").equals("logout")) { %>
+                <p id="success">You have been logged out.</p>
+        <% }
+        }%>
     <h3>Log In</h3>
     <form action="/temperature-web/LoginServlet" method="post">
         <label for="username">Enter Username:</label>
