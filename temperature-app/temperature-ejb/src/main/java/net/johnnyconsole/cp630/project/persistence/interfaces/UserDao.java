@@ -8,5 +8,6 @@ import javax.ejb.Local;
 public interface UserDao {
 
     User getUser(String username);
+    boolean addUser(User user);
     boolean verifyUser(String username, String passwordPlainText);
 }

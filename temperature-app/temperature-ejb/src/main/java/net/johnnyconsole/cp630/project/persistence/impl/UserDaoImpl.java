@@ -26,6 +26,15 @@ public class UserDaoImpl implements UserDao, UserDaoRemote {
         return (User) query.getSingleResult();
     }
 
+    public boolean addUser(User user) {
+        try {
+            manager.persist(user);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
     @Override
     public boolean verifyUser(String username, String passwordPlainText) {
         User user = getUser(username);
