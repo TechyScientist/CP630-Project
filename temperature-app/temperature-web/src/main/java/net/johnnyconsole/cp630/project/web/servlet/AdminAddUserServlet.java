@@ -31,27 +31,9 @@ public class AdminAddUserServlet extends HttpServlet {
                 User user = new User(username, name, password, accessLevel);
                 if(userDao.addUser(user)) response.sendRedirect("/temperature-web/dashboard.jsp?user=added");
                 else response.sendRedirect("/temperature-web/?error=useradd");
-            } else response.sendRedirect("/temperature-web/?error=notlogedin");
+            } else response.sendRedirect("/temperature-web/?error=notloggedin");
         } catch(Exception e) {
-            response.sendRedirect("/temperature-web/dashboard.jsp?error=prediction");
-        }
-
-    }
-
-    private String getMonthName(int month) {
-        switch(month) {
-            case 1: return " January ";
-            case 2: return " February ";
-            case 3: return " March ";
-            case 4: return " April ";
-            case 5: return " May ";
-            case 6: return " June ";
-            case 7: return " July ";
-            case 8: return " August ";
-            case 9: return " September ";
-            case 10: return " October ";
-            case 11: return " November ";
-            default: return " December ";
+            response.sendRedirect("/temperature-web/dashboard.jsp?error=useradd");
         }
     }
 }
