@@ -13,9 +13,8 @@ import javafx.stage.Stage;
 import net.johnnyconsole.cp630.project.client.TemperatureClient;
 import net.johnnyconsole.cp630.project.client.util.Database;
 import net.johnnyconsole.cp630.project.client.util.AccessLevel;
-import weka.classifiers.functions.LinearRegression;
+import weka.classifiers.trees.REPTree;
 import weka.core.Instances;
-import weka.core.SelectedTag;
 import weka.core.converters.ConverterUtils;
 
 import java.io.File;
@@ -36,23 +35,23 @@ public class SetupWindow extends Application {
         TextField model = new TextField();
 
         Button createDB = new Button("Create Database"),
-                genRegression = new Button("Generate Regression..."),
+                genRepTree = new Button("Generate RepTree..."),
                 back = new Button("Return to Menu");
 
         createDB.setMaxWidth(Double.MAX_VALUE);
         createDB.setMinHeight(40);
-        genRegression.setMaxWidth(Double.MAX_VALUE);
-        genRegression.setMinHeight(40);
+        genRepTree.setMaxWidth(Double.MAX_VALUE);
+        genRepTree.setMinHeight(40);
         back.setMaxWidth(Double.MAX_VALUE);
         back.setMinHeight(40);
 
         model.setDisable(true);
-        genRegression.setDisable(true);
+        genRepTree.setDisable(true);
 
         pane.add(createDB,0,0,2,1);
 
-        pane.addRow(2, new Label("Regression Model Name:"), model);
-        pane.add(genRegression, 0, 3, 2, 1);
+        pane.addRow(2, new Label("RepTree Model Name:"), model);
+        pane.add(genRepTree, 0, 3, 2, 1);
 
         pane.add(back, 0, 5, 2, 1);
 
@@ -61,14 +60,14 @@ public class SetupWindow extends Application {
                 createDB.setDisable(true);
                 createDB.setText("Database Created");
                 model.setDisable(false);
-                genRegression.setDisable(false);
+                genRepTree.setDisable(false);
             }
         });
 
-        genRegression.setOnAction(e -> {
-            if(generateRegression(model.getText())) {
-                genRegression.setDisable(true);
-                genRegression.setText("Regression Model Created");
+        genRepTree.setOnAction(e -> {
+            if(generateRepTree(model.getText())) {
+                genRepTree.setDisable(true);
+                genRepTree.setText("RepTree Model Created");
             }
         });
 
@@ -95,7 +94,7 @@ public class SetupWindow extends Application {
 
             String sql = "CREATE TABLE IF NOT EXISTS cons3250_project_model (" +
                     "name VARCHAR(100) PRIMARY KEY NOT NULL," +
-                    "class TINYTEXT NOT NULL," +
+                    "classname TINYTEXT NOT NULL," +
                     "object BLOB NOT NULL" +
                     ");";
 
@@ -123,7 +122,7 @@ public class SetupWindow extends Application {
         }
     }
 
-    private boolean generateRegression(String modelName) {
+    private boolean generateRepTree(String modelName) {
         try(Connection conn = Database.connect()) {
             if (modelName == null || modelName.isEmpty()) return false;
             FileChooser chooser = new FileChooser();
@@ -134,17 +133,15 @@ public class SetupWindow extends Application {
             Instances dataInstances = ConverterUtils.DataSource.read(dataset.getPath());
             dataInstances.setClassIndex(dataInstances.numAttributes() - 1);
 
-            LinearRegression regression = new LinearRegression();
-            SelectedTag tag = new SelectedTag(LinearRegression.SELECTION_NONE, LinearRegression.TAGS_SELECTION);
-            regression.setAttributeSelectionMethod(tag);
-            regression.buildClassifier(dataInstances);
+            REPTree repTree = new REPTree();
+            repTree.buildClassifier(dataInstances);
 
-            String sql = "INSERT IGNORE INTO cons3250_project_model (name, class, object) VALUES (?,?,?);";
+            String sql = "INSERT IGNORE INTO cons3250_project_model (name, classname, object) VALUES (?,?,?);";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, modelName);
-            stmt.setString(2, regression.getClass().getName());
-            stmt.setObject(3, regression);
+            stmt.setString(2, repTree.getClass().getName());
+            stmt.setObject(3, repTree);
             stmt.execute();
             return true;
         } catch(Exception e) {
