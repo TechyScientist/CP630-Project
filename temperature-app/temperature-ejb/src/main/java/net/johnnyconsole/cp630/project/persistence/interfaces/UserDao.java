@@ -9,6 +9,6 @@ public interface UserDao {
 
     User getUser(String username);
     boolean addUser(User user);
-    boolean removeUser(User user);
+    boolean removeUser(User user, String myUsername);
     boolean verifyUser(String username, String passwordPlainText);
 }
