@@ -24,7 +24,7 @@ public class AdminRemoveUserServlet extends HttpServlet {
                 String username = request.getParameter("user");
                 User user = userDao.getUser(username);
                 if(userDao.removeUser(user, ApplicationSession.username)) response.sendRedirect("/temperature-web/dashboard.jsp?user=removed");
-                else response.sendRedirect("/temperature-web/dashboard.jsp?error=userremove1");
+                else response.sendRedirect("/temperature-web/dashboard.jsp?error=userremove");
             } else response.sendRedirect("/temperature-web/?error=notloggedin");
         } catch(Exception e) {
             System.out.println(e);
