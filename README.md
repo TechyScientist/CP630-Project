@@ -1,8 +1,10 @@
-# CP630 Project Proposal: Temperature Prediction using a Linear Regression Model
+# CP630 Project Proposal: Temperature Prediction using a REPTree Model
 
 Author: Johnny Console (215803250)
 
-24 October 2023
+Original Publish Date: 24 October 2023
+
+Last Modification Published: 22 November 2023
 
 ### Introduction
 
@@ -50,41 +52,41 @@ format.
 
 #### Algorithm
 
-The algorithm used to predict the temperature for the given day will be
-Weka\'s Linear Regression algorithm.
+Originally, this project was going to be completed using Weka's Linear Regression algorithm, but after further testing based on the Weka recommended models for the dataset, the model was switched to the Wek REPTree Model, which provided a much more accurate prediction.
 
 ### System Design
 
 The system will have the following components covered in this course:
 
--   Login page with two levels of user access:
+- Login page with two levels of user access:
     -   **Access Level 1: Administrators** have access to the same
         features regular users do, but can also add or remove users
         (other than themselves) to the system.
     -   **Access Level 2: Regular Users** have access to a screen to
         allow the user to select a day in the next year to predict the
-        average temperature of based on the linear regression.
--   User passwords will be hashed using the BCrypt hashing algorithm
-    when stored in the database and will be verified using the same
-    algorithm when needed to increase security. The implementation of
-    BCrypt found [here](https://github.com/patrickfav/bcrypt) will be
-    used, as it can easily be imported into the project as a Maven
-    dependency.
--   SOAP and RESTful APIs to predict the temperature of a given day
+        average temperature of based on the REPTree.
+- User passwords will be hashed using the BCrypt hashing algorithm
+  when stored in the database and will be verified using the same
+  algorithm when needed to increase security. The implementation of
+  BCrypt found [here](https://github.com/patrickfav/bcrypt) will be
+  used, as it can easily be imported into the project as a Maven
+  dependency.
+- SOAP and RESTful APIs to predict the temperature of a given day
 
 The following concepts and tools used in this course will be included in
 the project implementation:
 
--   IntelliJ IDEA
--   Java EE
--   WildFly
--   JavaFX Client (for setup and creation/insertion of database and
-    initial models)
--   Web Clients (HTTP, SOAP and RESTful)
--   MySQL (for entity persistence)
--   Stateless Session Beans
--   Entity Beans (for the user and the model)
--   Weka (for Linear Regression model)
+- IntelliJ IDEA
+- Java EE
+- WildFly
+- JavaFX Client (for setup and creation/insertion of database and
+  initial models, prediction and administration)
+- Web Clients (HTTP (for all functions), SOAP and RESTful (for prediction only))
+- MySQL (for entity persistence)
+- Stateless Session Beans
+- Stateful/Entity Beans (for the user and the model)
+- RMI lookups for session beans for client use 
+- Weka (for REPTree model)
 
 ### Plan and Schedule
 
@@ -94,9 +96,9 @@ the project implementation:
   | Convert Compiled Dataset to Required Format             | Complete    | 26 October 2023                |  
   | Complete and Submit Project Proposal Document           | Complete    | 26 October 2023                |  
   | Program EAR, EJB and JavaFX Client components           | In Progress | 12 December 2023               |
-  | Program Web Client, SOAP API and RESTful API Components | To-Do       | 12 December 2023               |
-  | Test Components                                         | To-Do       | Ongoing, Due: 12 December 2023 |
-  | Documentation of Project                                | To-Do       | Ongoing, Due: 12 December 2023 |
+  | Program Web Client, SOAP API and RESTful API Components | In Progress | 12 December 2023               |
+  | Test Components                                         | In Progress | Ongoing, Due: 12 December 2023 |
+  | Documentation of Project                                | In Progress | Ongoing, Due: 12 December 2023 |
   | Create Project Demonstration Video                      | To-Do       | 12 December 2023               |
   | Submit Project Code and Demonstration                   | To-Do       | 19 December 2023               |
 
