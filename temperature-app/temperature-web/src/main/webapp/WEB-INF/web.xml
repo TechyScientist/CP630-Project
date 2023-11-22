@@ -12,4 +12,8 @@
         <servlet-name>PredictionServlet</servlet-name>
         <servlet-class>net.johnnyconsole.cp630.project.web.servlet.PredictionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddUserServlet</servlet-name>
+        <servlet-class>net.johnnyconsole.cp630.project.web.servlet.AdminAddUserServlet</servlet-class>
+    </servlet>
 </web-app>
