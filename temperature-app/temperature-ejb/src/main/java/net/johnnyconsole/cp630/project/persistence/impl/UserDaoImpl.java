@@ -35,10 +35,11 @@ public class UserDaoImpl implements UserDao, UserDaoRemote {
         }
     }
 
-        public boolean removeUser(User user) {
+        public boolean removeUser(User user, String myUsername) {
             try {
                 //From https://stackoverflow.com/questions/17027398/java-lang-illegalargumentexception-removing-a-detached-instance-com-test-user5
                 //EntityManager can only remove entities currently in its context - if the user isn't in the manager's context, merge it in to make it managed.
+                if(user.getUsername().equals(myUsername)) return false;
                 manager.remove(manager.contains(user) ? user : manager.merge(user));
                 return true;
             } catch (Exception e) {
