@@ -16,4 +16,8 @@
         <servlet-name>AdminAddUserServlet</servlet-name>
         <servlet-class>net.johnnyconsole.cp630.project.web.servlet.AdminAddUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminRemoveUserServlet</servlet-name>
+        <servlet-class>net.johnnyconsole.cp630.project.web.servlet.AdminRemoveUserServlet</servlet-class>
+    </servlet>
 </web-app>

@@ -96,14 +96,18 @@
             if(request.getParameter("error").equals("prediction")) {%>
                 <p id="error">There was an error with making the prediction. Please try again.</p>
     <%  } else if(request.getParameter("error").equals("useradd")) { %>
-            <p id="error">There was an error with adding the user. Please try again.</p>
-    <% }
+            <p id="error">There was an error adding the user. Please try again.</p>
+    <% } else if(request.getParameter("error").equals("userremove")) { %>
+            <p id="error">There was an error removing the user. Please try again.</p>
+        <%}
         } else if(request.getParameter("prediction") != null && !request.getParameter("prediction").isEmpty()) {%>
         <p id="success">The predicted temperatue on <%= request.getParameter("date") %>  is: <b><%= request.getParameter("prediction") %> &deg;C.</b></p>
     <% } else if(request.getParameter("user") != null && !request.getParameter("user").isEmpty()) {
             if(request.getParameter("user").equals("added")) { %>
                 <p id="success">The requested user has been added to the system.</p>
-      <%     }
+      <%     } else if(request.getParameter("user").equals("removed")) { %>
+    <p id="success">The requested user has been removed from the system.</p>
+    <% }
         }%>
     <h2>Welcome, <%= name.contains(" ") ? name.substring(0, name.indexOf(' ')) : name %>!</h2><br/>
     <form action="/temperature-web/LogOutServlet" method="post">
@@ -163,7 +167,7 @@
             </div>
             <div class="horiz" id="right">
                 <h3>Remove User</h3>
-                <form action="" method="post">
+                <form action="/temperature-web/AdminRemoveUserServlet" method="post">
                     <label for="user">Select User:</label>
                     <input type="text" name="user" id="user" required/><br/><br/>
                     <input type="submit" value="Remove User"/>
