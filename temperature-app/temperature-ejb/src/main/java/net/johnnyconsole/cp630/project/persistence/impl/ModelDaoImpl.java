@@ -18,8 +18,12 @@ public class ModelDaoImpl implements ModelDao {
 
     @Override
     public Model getModel(String name) {
-        Query query = manager.createNamedQuery("Model.findByName");
-        query.setParameter("name", name);
-        return (Model) query.getSingleResult();
+        try {
+            Query query = manager.createNamedQuery("Model.findByName");
+            query.setParameter("name", name);
+            return (Model) query.getSingleResult();
+        } catch(Exception e) {
+            return null;
+        }
     }
 }
