@@ -63,6 +63,24 @@
             clear: left;
             vertical-align: top;
         }
+
+        p#error {
+            background-color: darkred;
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        p#success {
+            background-color: darkgreen;
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -73,13 +91,22 @@
     <h5>Author: Johnny Console (215803250)</h5>
 </div>
 <div id="body">
-    <%if(username != null) {%>
+    <%if(username != null) {
+        if(request.getParameter("error") != null && !request.getParameter("error").isEmpty()) {
+            if(request.getParameter("error").equals("prediction")) {%>
+                <p id="error">There was an error with making the prediction. Please try again.</p>
+    <%  }
+    } else if(request.getParameter("prediction") != null && !request.getParameter("prediction").isEmpty()) {%>
+        <p id="success">The predicted temperatue on <%= request.getParameter("date") %>  is: <b><%= request.getParameter("prediction") %> &deg;C.</b></p>
+    <% } %>
     <h2>Welcome, <%= name.contains(" ") ? name.substring(0, name.indexOf(' ')) : name %>!</h2><br/>
     <form action="/temperature-web/LogOutServlet" method="post">
         <input type="submit" value="Log Out"/>
     </form>
     <h3>Predict Temperature</h3>
-    <form action="" method="post">
+    <form action="/temperature-web/PredictionServlet" method="post">
+        <label for="model">Model Name:</label>
+        <input type="text" name="model" id="model" required /><br/><br/>
         <label for="year">Year:</label>
         <select name="year" id="year">
             <% for(int i = 2000; i <= 2030; i++) { %>
