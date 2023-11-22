@@ -9,5 +9,7 @@ public interface UserDaoRemote {
 
     User getUser(String username);
     boolean addUser(User user);
+
+    boolean removeUser(User user);
     boolean verifyUser(String username, String passwordPlainText);
 }
