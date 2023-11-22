@@ -95,10 +95,16 @@
         if(request.getParameter("error") != null && !request.getParameter("error").isEmpty()) {
             if(request.getParameter("error").equals("prediction")) {%>
                 <p id="error">There was an error with making the prediction. Please try again.</p>
-    <%  }
-    } else if(request.getParameter("prediction") != null && !request.getParameter("prediction").isEmpty()) {%>
+    <%  } else if(request.getParameter("error").equals("useradd")) { %>
+            <p id="error">There was an error with adding the user. Please try again.</p>
+    <% }
+        } else if(request.getParameter("prediction") != null && !request.getParameter("prediction").isEmpty()) {%>
         <p id="success">The predicted temperatue on <%= request.getParameter("date") %>  is: <b><%= request.getParameter("prediction") %> &deg;C.</b></p>
-    <% } %>
+    <% } else if(request.getParameter("user") != null && !request.getParameter("user").isEmpty()) {
+            if(request.getParameter("user").equals("added")) { %>
+                <p id="success">The requested user has been added to the system.</p>
+      <%     }
+        }%>
     <h2>Welcome, <%= name.contains(" ") ? name.substring(0, name.indexOf(' ')) : name %>!</h2><br/>
     <form action="/temperature-web/LogOutServlet" method="post">
         <input type="submit" value="Log Out"/>
@@ -140,14 +146,14 @@
         <div style="display: -webkit-box; -webkit-box-orient: horizontal;">
             <div class="horiz" id="left">
                 <h3>Add a User</h3>
-                <form action="" method="post">
+                <form action="/temperature-web/AdminAddUserServlet" method="post">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" required/><br/><br/>
                     <label for="name">Name:</label>
                     <input type="text" name="name" id="name" required/><br/><br/>
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" required/><br/><br/>
-                    <label for="accessLevel">Name:</label>
+                    <label for="accessLevel">Access Level:</label>
                     <select name="accessLevel" id="accessLevel">
                         <option value="0">Standard</option>
                         <option value="1">Elevated</option>
