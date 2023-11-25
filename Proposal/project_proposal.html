@@ -69,7 +69,7 @@
 	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">The datasets used for the project come from Environment and Climate Change Canada's (ECCC) Historical Data Extract tool, found <a href="https://climate.weather.gc.ca/historical_data/search_historic_data_e.html">here</a>. This tool allows for downloading daily or hourly weather information gor a given year and month or day (for hourly data only) for any give weather station in Canada. The chosen station is <b>OTTAWA INTL A</b> (Ottawa International Airport [IATA: YOW, ICAO: CYOW]).</p>
 	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">Because the source gives the data in seperate CSV files, the data files from 2013-2023 were downloaded and combined into the included <a href="files/TemperatureData-2013-2023-Combined.csv">TemperatureData-2013-2023-Combined.csv</a> file, which was converted to ARFF format using Weka's GUI Interface. The converted ARFF file can be found <a href="files/TemperatureData-2013-2023-Combined.arff">here</a>. Individual historical data files can be accessed through the list in the References section. Extra data (Latitude, Longitude, and extra climate information), as well as rows with missing data, are removed from the combined dataset using Microsoft Excel prior to converting to ARFF format.</p>
 	<h4 style="margin-left: 30px";>Algorithm</h4>
-	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">The algorithm used to predict the temperature for the given day will be Weka's Linear Regression algorithm.</p>
+	<p style="margin-left: 40px; margin-top: 5px; margin-bottom: 10px;">The algorithm used to predict the temperature for the given day will be Weka's Linear Regression algorithm. <a href="https://weka.sourceforge.io/doc.dev/weka/classifiers/trees/REPTree.html">Weka's Documentation</a> defines the function of a REPTree as "Fast decision tree learner. Builds a decision/regression tree using information gain/variance and prunes it using reduced-error pruning (with backfitting). Only sorts values for numeric attributes once. Missing values are dealt with by splitting the corresponding instances into pieces", making it more suitable than the linear regression model previously intended for use in this project.</p>
 </div>
 
 <div class="section">
@@ -89,12 +89,12 @@
 		<li>Eclipse</li>
 		<li>Java EE</li>
 		<li>WildFly</li>
-		<li>JavaFX Client (for setup and creation/insertion of database and initial models)</li>
+		<li>JavaFX Client (for setup and creation/insertion of database and initial models, prediction)</li>
 		<li>Web Clients (HTTP, SOAP and RESTful)</li>
 		<li>MySQL (for entity persistence)</li>
 		<li>Stateless Session Beans</li>
 		<li>Entity Beans (for the user and the model)</li>
-		<li>Weka (for Linear Regression model)</li>
+		<li>Weka (for REPTree model)</li>
 	</ul>
 </div>
 
@@ -118,26 +118,26 @@
 		<tr>
 			<td>Complete and Submit Project Proposal Document</td>
 			<td>Complete</td>
-			<td>26 October 2023</td>
+			<td>26 October 2023<br/>Resubmitted: 25 November 2023</td>
 		</tr>
 		<tr>
 			<td>Program EAR, EJB and JavaFX Client components</td>
-			<td>To-Do</td>
+			<td>In Progress</td>
 			<td>12 December 2023</td>
 		</tr>
 		<tr>
 			<td>Program Web Client, SOAP API and RESTful API Components</td>
-			<td>To-Do</td>
-			<td>12 December 2023</td>
+			<td>Web Client: Completed<br/>SOAP WS: To-Do<br/>RESTful WS: To-Do</td>
+			<td>25 November 2023<br/>12 December 2023<br/>12 December 2023</td>
 		</tr>
 		<tr>
 			<td>Test Components</td>
-			<td>To-Do</td>
+			<td>In Progress</td>
 			<td>Ongoing, Due: 12 December 2023</td>
 		</tr>
 		<tr>
 			<td>Documentation of Project</td>
-			<td>To-Do</td>
+			<td>In Progress</td>
 			<td>Ongoing, Due: 12 December 2023</td>
 		</tr>
 		<tr>
@@ -158,6 +158,7 @@
 	<h3 id="references">References</h3>
 	<ol class="incremental" type="1">
 		<li><a href="https://en.wikipedia.org/wiki/Farmers%27_Almanac">Wikipedia/Farmer’s Almanac</a></li>
+		<li><a href="https://weka.sourceforge.io/doc.dev/weka/classifiers/trees/REPTree.html">Weka Documentation/REPTree</a></li>
 		<li><a href="https://github.com/patrickfav/bcrypt">GitHub/patrickfav/bcrypt</a></li>
 		<li><a href="https://climate.weather.gc.ca/historical_data/search_historic_data_e.html">Environment and Climate Change Canada (ECCC) Historical Climate Data Extract Tool</a>
 		<li>Data Files:
