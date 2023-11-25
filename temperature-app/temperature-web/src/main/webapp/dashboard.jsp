@@ -115,8 +115,9 @@
     </form>
     <h3>Predict Temperature</h3>
     <form action="/temperature-web/PredictionServlet" method="post">
+        <% String s = request.getParameter("model") == null ? "" : request.getParameter("model"); %>
         <label for="model">Model Name:</label>
-        <input type="text" name="model" id="model" required /><br/><br/>
+        <input type="text" name="model" id="model" value="<%= s %>" required /><br/><br/>
         <label for="year">Year:</label>
         <select name="year" id="year">
             <% for(int i = 2000; i <= 2030; i++) { %>

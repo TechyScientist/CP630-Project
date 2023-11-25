@@ -26,7 +26,7 @@ public class PredictionServlet extends HttpServlet {
                         day = Integer.parseInt(request.getParameter("day"));
                 double prediction = stateless.predict(model, year, month, day);
                 if (prediction == Double.MIN_VALUE) throw new Exception("Missing Model");
-                response.sendRedirect("/temperature-web/dashboard.jsp?date=" + day + getMonthName(month) + year + "&prediction=" + prediction);
+                response.sendRedirect("/temperature-web/dashboard.jsp?model=" + model + "&date=" + day + getMonthName(month) + year + "&prediction=" + prediction);
             } else response.sendRedirect("/temperature-web/?error=notlogedin");
         } catch(Exception e) {
             response.sendRedirect("/temperature-web/dashboard.jsp?error=prediction");
