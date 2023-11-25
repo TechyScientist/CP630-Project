@@ -11,6 +11,7 @@ import net.johnnyconsole.cp630.project.client.util.ApplicationSession;
 import net.johnnyconsole.cp630.project.client.util.Database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -22,7 +23,8 @@ public class AdministrationPane extends GridPane {
         setVgap(10);
 
         Label addHeader = new Label("Add a User"),
-                removeHeader = new Label("Remove a User");
+                removeHeader = new Label("Remove a User"),
+        message = new Label();
         TextField username = new TextField(),
                 name = new TextField();
         PasswordField password = new PasswordField();
@@ -50,6 +52,21 @@ public class AdministrationPane extends GridPane {
         remove.setMaxWidth(Double.MAX_VALUE);
         remove.setMinHeight(40);
 
+        remove.setOnAction(e -> {
+            try(Connection conn = Database.connect()) {
+                String user = removeUsers.getSelectionModel().getSelectedItem();
+                user = user.substring(user.indexOf('"') +1, user.lastIndexOf('"'));
+                String sql = "DELETE FROM cons3250_project_user WHERE username=?;";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, user);
+                stmt.execute();
+                populate(removeUsers);
+                message.setText(user + " Removed");
+            } catch(Exception ex) {
+                message.setText("Remove Operation Failed1");
+            }
+        });
+
        add(new Label("Add a User"), 0, 0, 2, 1);
        addColumn(0, new Label("Username:"), new Label("Name:"), new Label("Password:"), new Label("Access Level:"));
        addColumn(1, username, name, password, accessLevel);
@@ -58,6 +75,7 @@ public class AdministrationPane extends GridPane {
        add(new Label("Select User:"), 3, 1);
        add(removeUsers, 4, 1);
        add(remove, 3, 2, 2, 1);
+       add(message, 0, 7, 10, 1);
 
        setMinWidth(1000);
     }
