@@ -23,7 +23,7 @@ public class AdminAddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             if(ApplicationSession.username != null) {
-                String username = request.getParameter("username"),
+                String username = request.getParameter("username").toLowerCase(),
                         name = request.getParameter("name"),
                         password = BCrypt.withDefaults().hashToString(12, request.getParameter("password").toCharArray());
                 int accessLevel = Integer.parseInt(request.getParameter("accessLevel"));

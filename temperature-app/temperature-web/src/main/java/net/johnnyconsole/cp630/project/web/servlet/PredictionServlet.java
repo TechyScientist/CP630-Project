@@ -20,7 +20,7 @@ public class PredictionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             if(ApplicationSession.username != null) {
-                String model = request.getParameter("model");
+                String model = request.getParameter("model").toLowerCase();
                 int year = Integer.parseInt(request.getParameter("year")),
                         month = Integer.parseInt(request.getParameter("month")),
                         day = Integer.parseInt(request.getParameter("day"));
