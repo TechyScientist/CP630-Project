@@ -139,7 +139,7 @@ public class SetupWindow extends Application {
             String sql = "INSERT IGNORE INTO cons3250_project_model (name, classname, object) VALUES (?,?,?);";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, modelName);
+            stmt.setString(1, modelName.toLowerCase());
             stmt.setString(2, repTree.getClass().getName());
             stmt.setObject(3, repTree);
             stmt.execute();
