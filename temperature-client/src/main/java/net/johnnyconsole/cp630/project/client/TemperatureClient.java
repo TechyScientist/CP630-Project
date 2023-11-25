@@ -119,7 +119,7 @@ public class TemperatureClient extends Application {
                 if(BCrypt.verifyer().verify(password.getBytes(), hash.getBytes()).verified) {
                     System.out.println("Access Granted: User(Username: " + username + ", Name: " +
                             set.getString("name") + ", Access Level: "
-                            + (set.getInt("accessLevel") == 0 ? " Administrator" : "Standard") + ")");
+                            + (set.getInt("accessLevel") == 0 ? " Standard" : "Elevated") + ")");
                     ApplicationSession.username = username;
                     ApplicationSession.name = set.getString("name");
                     ApplicationSession.accessLevel = set.getInt("accessLevel");
