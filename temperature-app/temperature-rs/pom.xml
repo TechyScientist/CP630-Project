@@ -11,7 +11,7 @@
 
     <artifactId>temperature-rs</artifactId>
     <name>temperature-rs</name>
-    <description>RESTful API for Linear Regression Temperature Prediction</description>
+    <description>RESTful API for REPTree Temperature Prediction</description>
     <packaging>war</packaging>
 
     <properties>

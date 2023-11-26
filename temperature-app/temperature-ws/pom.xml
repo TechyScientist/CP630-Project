@@ -12,7 +12,7 @@
 
     <artifactId>temperature-ws</artifactId>
     <name>temperature-ws</name>
-    <description>Web Services for Linear Regression Temperature Prediction</description>
+    <description>Web Services for REPTree Temperature Prediction</description>
     <packaging>war</packaging>
 
     <properties>

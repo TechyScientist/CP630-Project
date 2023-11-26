@@ -12,7 +12,7 @@
 
     <artifactId>temperature-ejb</artifactId>
     <name>temperature-ejb</name>
-    <description>EJB Components for Linear Regression Temperature Prediction</description>
+    <description>EJB Components for REPTree Temperature Prediction</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -12,7 +12,7 @@
 
     <artifactId>temperature-web</artifactId>
     <name>temperature-web</name>
-    <description>Web Client for Linear Regression Temperature Prediction</description>
+    <description>Web Client for REPTree Temperature Prediction</description>
     <packaging>war</packaging>
 
     <properties>

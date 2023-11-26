@@ -12,7 +12,7 @@
 
     <artifactId>temperature-ear</artifactId>
     <name>temperature-ear</name>
-    <description>EAR Wrapper for EJB and Web Components for Linear Regression Temperature Prediction</description>
+    <description>EAR Wrapper for EJB and Web Components for REPTree Temperature Prediction</description>
     <packaging>ear</packaging>
 
     <properties>
