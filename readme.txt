@@ -31,12 +31,12 @@ R1.5 [30/30/*] Create deployable service components using application models usi
 
 R1.6 [30/30/*] Deploy service components onto enterprise application servers.
 
-R1.7 [0/30/*] Create web services (SOAP, RESTful) to use the data service components.
+R1.7 [3/30/*] Create web services (SOAP, RESTful) to use the data service components.
 
 R1.8 [30/30/*] Create web user interface/mobile applications to use the application/web services.
 
-R1.9 [0/30/*] Test your services, log your services, and document your term project.
+R1.9 [30/30/*] Test your services, log your services, and document your term project.
 
-R1.10 [0/30/*] Demonstrate your term project in final project presentation, slides, short video.
+R1.10 [30/30/*] Demonstrate your term project in final project presentation, slides, short video.
 
-Total: [210/300/*]
+Total: [300/300/*]
