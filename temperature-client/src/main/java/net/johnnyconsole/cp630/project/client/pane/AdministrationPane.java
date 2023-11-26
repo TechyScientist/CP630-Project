@@ -1,5 +1,6 @@
 package net.johnnyconsole.cp630.project.client.pane;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -52,6 +53,33 @@ public class AdministrationPane extends GridPane {
         remove.setMaxWidth(Double.MAX_VALUE);
         remove.setMinHeight(40);
 
+        add.setOnAction(e -> {
+            try(Connection conn = Database.connect()) {
+                String user = username.getText(),
+                        userName = name.getText(),
+                        userPassword = password.getText();
+                if(user == null || user.isEmpty() || userName == null || userName.isEmpty() || userPassword == null || userPassword.isEmpty()) {
+                    message.setText("Add Operation Failed: Missing Information");
+                }
+                else {
+                    PreparedStatement stmt = conn.prepareStatement("INSERT INTO cons3250_project_user (username, name, password, accessLevel) VALUES(?,?,?,?);");
+                    stmt.setString(1, user.toLowerCase());
+                    stmt.setString(2, userName);
+                    stmt.setString(3, BCrypt.withDefaults().hashToString(12, userPassword.toCharArray()));
+                    stmt.setInt(4, accessLevel.getSelectionModel().getSelectedIndex());
+                    stmt.execute();
+                    message.setText((accessLevel.getSelectionModel().getSelectedIndex() == 0 ? "Standard" : "Elevated") + " User \"" + user + "\" Added");
+                    populate(removeUsers);
+                    username.setText("");
+                    password.setText("");
+                    name.setText("");
+                    accessLevel.getSelectionModel().select(0);
+                }
+            } catch(Exception ex) {
+                message.setText("Add Operation Failed");
+            }
+        });
+
         remove.setOnAction(e -> {
             try(Connection conn = Database.connect()) {
                 String user = removeUsers.getSelectionModel().getSelectedItem();
@@ -61,9 +89,9 @@ public class AdministrationPane extends GridPane {
                 stmt.setString(1, user);
                 stmt.execute();
                 populate(removeUsers);
-                message.setText(user + " Removed");
+                message.setText("User \"" + user + "\" Removed");
             } catch(Exception ex) {
-                message.setText("Remove Operation Failed1");
+                message.setText("Remove Operation Failed");
             }
         });
 
