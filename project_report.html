@@ -1,0 +1,82 @@
+<h1 id="project-report">PROJECT Report</h1>
+<p>Author: Johnny Console (215803250)</p>
+<p>Date: 26 November 2023</p>
+<p>Check <a href="readme.txt" class="uri">readme.txt</a> for course work statement and self-evaluation.</p>
+<h2 id="r1-requirements-project">R1 Requirements (project)</h2>
+<h3 id="r1-write-a-project-proposal-2-3-pages.">R1 Write a project proposal (2-3 pages).</h3>
+<p>Complete? (Yes/No): Yes, <a href="Proposal/project_proposal.html">Project Proposal</a></p>
+<h3 id="r2-design-data-format-collect-data-create-dataset-for-the-application.">R2 Design data format, collect data, create dataset for the application.</h3>
+<p>Complete? (Yes/No): Yes, <a href="Proposal/files/TemperatureData-2013-2023-Combined.arff">Dataset</a></p>
+<ol class="incremental" type="1">
+<li>Collect and combine collected monthly data files from 2013-2023 using Microsoft Excel</li>
+<li>Prune blank data entries with Microsoft Excel</li>
+<li>Use Weka’s provided tool to convert the Microsoft Excel sheet into a readAble ARFF file for importing</li>
+</ol>
+<h3 id="r3-develop-and-implement-data-application-algorithms-for-the-proposed-application-problem.">R3 Develop and implement data application algorithms for the proposed application problem.</h3>
+<p>Complete? (Yes/No): Yes (See Code for Implementations)</p>
+<p>If Yes, briefly describe:</p>
+<ol class="incremental" type="1">
+<li>In Java Client, create initial database schema and insert initial users</li>
+<li>In Java Client, prompt user for name and trained model file for initial model</li>
+<li>In Stateless Session Bean and Java Client, collect model name and the year/month/day to predict, retreive model from database, build instance and return classified value for the given day</li>
+<li>In Web Client, SOAP and RESTful APIs, use stateless session bean to predict</li>
+</ol>
+<h3 id="r4-do-data-computing-to-generate-models-representing-models-in-portable-format-and-stored-in-file-or-database.-more-credit-is-given-if-distributed-approach-is-used-data-mining-of-big-dataset.">R4 Do data computing to generate models, representing models in portable format and stored in file or database. More credit is given if distributed approach is used data mining of big dataset.</h3>
+<p>Complete? (Yes/No): Yes</p>
+<ol class="incremental" type="1">
+<li>Collected data from Environment and Climate Change Canada’s Historical Data Extract Tool, 2013-2023</li>
+<li>Used JavaFX Client to set up database schema, create REPTree Model and insert it into database, create two user models and insert them to the database</li>
+<li>When required, import the model from the database to use for prediction calculations</li>
+</ol>
+<h3 id="r5-create-deployable-service-components-using-application-models-using-java-based-enterprise-computing-technologies-to-create-client-program-to-do-remote-call-of-the-data-mining-services.">R5 Create deployable service components using application models using Java based enterprise computing technologies, to create client program to do remote call of the data mining services.</h3>
+<p>Complete? (Yes/No): Yes</p>
+<ol class="incremental" type="1">
+<li>Create a wrapper project, temperature-app, containing subordinate projects temperature-ear, temperature-ejb, temperature-web, temperature-ws and temperature-rs:
+<ul class="incremental">
+<li>temperature-ejb: Project containing all Enterprise Java Beans, including stateless beans and stateful/entity beans</li>
+<li>temperature-web: Project containing all servlet components and Java Server Pages for interacting with the temperature-ejb (<a href="Demo/ProjectDemo1-web.mp4">Web Client Demo</a>)</li>
+<li>temperature-ws: Project containing all web service components for performing predictions</li>
+<li>temperature-rs: Project containing all RESTful API components for performing predictions (<a href="Demo/ProjectDemo3-restful.mp4">RESTful Demo</a>)</li>
+<li>temperature-ear: Wrapper for ejb, web, ws and rs components</li>
+</ul></li>
+<li>Create a Client to allow users to do predictions and adminisrative tasks (as applicable) (<a href="Demo/ProjectDemo2-client.mp4">Java Client Demo</a>)</li>
+</ol>
+<p>Structure:</p>
+<pre><code>  temperature-app
+      temperature-ear
+      temperature-ejb
+      temperature-web
+      temperature-ws
+      temperature-rs
+  temperature-client</code></pre>
+<h3 id="r6-deploy-service-components-onto-enterprise-application-servers.">R6 Deploy service components onto enterprise application servers.</h3>
+<p>Complete? (Yes/No): Yes</p>
+<ol class="incremental" type="1">
+<li>Deployed temperature-app and all of its components to locally hosted WildFly server with MySQL configured</li>
+</ol>
+<h3 id="r7-create-web-services-soap-restful-to-use-the-data-service-components.">R7 Create web services (SOAP, RESTful) to use the data service components.</h3>
+<p>Complete? (Yes/No): Yes</p>
+<ol class="incremental" type="1">
+<li>Created a SOAP Web Service API to allow predictions</li>
+<li>Created a RESTful API and test web client to do predictions</li>
+</ol>
+<h3 id="r8-create-web-user-interfacemobile-applications-to-use-the-applicationweb-services.">R8 Create web user interface/mobile applications to use the application/web services.</h3>
+<p>Complete? (Yes/No): Yes, see demonstration video</p>
+<h3 id="r9-test-your-services-log-your-services-and-document-your-term-project.">R9 Test your services, log your services, and document your term project.</h3>
+<p>Complete? (Yes/No): Yes</p>
+<ol class="incremental" type="1">
+<li>Instrumental testing as new components are completed</li>
+</ol>
+<h3 id="r10-demonstrate-your-term-project-in-final-project-presentation-slides-short-video.">R10 Demonstrate your term project in final project presentation, slides, short video.</h3>
+<p>Complete? (Yes/No): Yes</p>
+<ol class="incremental" type="1">
+<li><a href="Demo/CP630%20Demo%20Video.mp4">Local Video Link</a></li>
+<li><a href="https://youtu.be/RJCU23JrToY">YouTube Video Link</a></li>
+</ol>
+<p><strong>References</strong></p>
+<ol class="incremental" type="1">
+<li>CP630OC Project</li>
+<li>CP630OC Labs</li>
+<li>CP630OC Assignments</li>
+<li>Any and all references noted in code files</li>
+</ol>
