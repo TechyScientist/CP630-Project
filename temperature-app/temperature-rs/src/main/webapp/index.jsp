@@ -1,3 +1,8 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="net.johnnyconsole.cp630.project.rs.util.Database" %>
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
@@ -85,6 +90,8 @@
                     response.innerHTML = "";
                     return;
                 }
+                console.log(month.value);
+                console.log(getMonthName(month.value))
                 const url = "http://localhost:8080/temperature-rs/rest/predict?model=" + model.value + "&year=" + year.value + "&month=" + month.value + "&day=" + day.value;
                 xhttp.open('GET', url, true);
                 xhttp.send();
@@ -107,17 +114,17 @@
 
                 function getMonthName(month) {
                     switch(month) {
-                        case 1: return "January";
-                        case 2: return "February";
-                        case 3: return "March";
-                        case 4: return "April";
-                        case 5: return "May";
-                        case 6: return "June";
-                        case 7: return "July";
-                        case 8: return "August";
-                        case 9: return "September";
-                        case 10: return "October";
-                        case 11: return "November";
+                        case "1": return "January";
+                        case "2": return "February";
+                        case "3": return "March";
+                        case "4": return "April";
+                        case "5": return "May";
+                        case "6": return "June";
+                        case "7": return "July";
+                        case "8": return "August";
+                        case "9": return "September";
+                        case "10": return "October";
+                        case "11": return "November";
                         default: return "December";
                     }
                 }
@@ -134,7 +141,21 @@
             <p id="response"></p>
             <h3>Predict Temperature</h3>
             <label for="model">Model Name:</label>
-            <input type="text" name="model" id="model" /><br/><br/>
+            <select name="model" id="model" required>
+                <%
+                    try (Connection conn = Database.connect()) {
+                        PreparedStatement stmt = conn.prepareStatement("SELECT name FROM cons3250_project_model WHERE classname=?;");
+                        stmt.setString(1, "weka.classifiers.trees.REPTree");
+                        ResultSet rs = stmt.executeQuery();
+                        while(rs.next()) {
+                            String n = rs.getString("name"); %>
+                <option value="<%=n%>"><%=n%></option>
+                <%        }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                %>
+            </select><br/><br/>
             <label for="year">Year:</label>
             <select name="year" id="year">
                 <% for(int i = 2000; i <= 2030; i++) { %>
