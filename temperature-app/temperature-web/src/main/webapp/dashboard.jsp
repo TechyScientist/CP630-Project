@@ -1,4 +1,12 @@
 <%@ page import="static net.johnnyconsole.cp630.project.web.util.ApplicationSession.*" %>
+<%@ page import="net.johnnyconsole.cp630.project.persistence.Model" %>
+<%@ page import="javax.naming.NamingException" %>
+<%@ page import="net.johnnyconsole.cp630.project.web.util.Database" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="net.johnnyconsole.cp630.project.web.util.ApplicationSession" %>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -117,7 +125,21 @@
     <form action="/temperature-web/PredictionServlet" method="post">
         <% String s = request.getParameter("model") == null ? "" : request.getParameter("model"); %>
         <label for="model">Model Name:</label>
-        <input type="text" name="model" id="model" value="<%= s %>" required /><br/><br/>
+        <select name="model" id="model" required>
+            <%
+                try (Connection conn = Database.connect()) {
+                    PreparedStatement stmt = conn.prepareStatement("SELECT name FROM cons3250_project_model WHERE classname=?;");
+                    stmt.setString(1, "weka.classifiers.trees.REPTree");
+                    ResultSet rs = stmt.executeQuery();
+                   while(rs.next()) {
+                        String n = rs.getString("name"); %>
+            <option value="<%=n%>" <% if(s.equals(n)) { %> selected <%} %>><%=n%></option>
+            <%        }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            %>
+        </select><br/><br/>
         <label for="year">Year:</label>
         <select name="year" id="year">
             <% for(int i = 2000; i <= 2030; i++) { %>
@@ -170,7 +192,24 @@
                 <h3>Remove User</h3>
                 <form action="/temperature-web/AdminRemoveUserServlet" method="post">
                     <label for="user">Select User:</label>
-                    <input type="text" name="user" id="user" required/><br/><br/>
+
+                    <select name="user" id="user">
+                        <%
+                            try (Connection conn = Database.connect()) {
+                                PreparedStatement stmt = conn.prepareStatement("SELECT username, name FROM cons3250_project_user WHERE username<>?;");
+                                stmt.setString(1, ApplicationSession.username);
+                                ResultSet rs = stmt.executeQuery();
+                                while(rs.next()) {
+                                    String u = rs.getString("username"),
+                                    n = rs.getString("name");
+                        %>
+                        <option value="<%=u%>"><%=u + " (" + n + ")"%></option>
+                        <%        }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        %>
+                    </select><br/><br/>
                     <input type="submit" value="Remove User"/>
                 </form>
             </div>
