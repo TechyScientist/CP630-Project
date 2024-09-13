@@ -5,7 +5,6 @@ import net.johnnyconsole.cp630.project.persistence.User;
 import net.johnnyconsole.cp630.project.persistence.interfaces.UserDao;
 import net.johnnyconsole.cp630.project.persistence.interfaces.UserDaoRemote;
 
-import javax.ejb.RemoteHome;
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Alternative;
 import javax.persistence.EntityManager;
@@ -43,14 +42,17 @@ public class UserDaoImpl implements UserDao, UserDaoRemote {
                 manager.remove(manager.contains(user) ? user : manager.merge(user));
                 return true;
             } catch (Exception e) {
-                System.out.println(e);
                 return false;
             }
         }
 
     @Override
     public boolean verifyUser(String username, String passwordPlainText) {
-        User user = getUser(username);
-        return BCrypt.verifyer().verify(passwordPlainText.getBytes(), user.getPassword().getBytes()).verified;
+        try {
+            User user = getUser(username);
+            return BCrypt.verifyer().verify(passwordPlainText.getBytes(), user.getPassword().getBytes()).verified;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
